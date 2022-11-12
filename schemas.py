@@ -18,3 +18,13 @@ class StudentCreate(BaseModel):
     lastname: str
     is_active: bool
     teacher: int
+
+
+class ShowStudent(BaseModel):
+    firstname: str
+    lastname: str
+    is_active: bool
+    teacher: int
+
+    class Config():
+        orm_mode = True

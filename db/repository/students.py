@@ -19,3 +19,8 @@ def create_new_student(student:StudentCreate, db:Session):
     db.commit()
     db.refresh(new_student)
     return new_student
+
+
+def retrieve_student(id:int, db:Session):
+    student =  db.query(Student).filter(Student.id ==id).first()
+    return student
