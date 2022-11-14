@@ -1,9 +1,25 @@
 from typing import Optional
 from pydantic import BaseModel,EmailStr
 
+class Token(BaseModel):
+    token_type: str
+    access_token: str
+
+class StudentBase(BaseModel):
+    firstname: Optional[str] = None
+    lastname: Optional[str] = None
+    is_active: Optional[bool] = True
+    teacher_id: Optional[int] = None
+    id: int
+
+class UserBase(BaseModel):
+    username: Optional[str] = None
+    email: Optional[str] = None
+    password: Optional[str] = None
+    id: int
 
 #properties required during user creation
-class UserCreate(BaseModel):
+class UserCreate(UserBase):
     username: str
     email : EmailStr
     password : str
@@ -13,18 +29,28 @@ class TeacherCreate(BaseModel):
     lastname: str
     school: str
 
-class StudentCreate(BaseModel):
+class StudentCreate(StudentBase):
     firstname: str
     lastname: str
     is_active: bool
-    teacher: int
+    teacher_id: int
+    # id:int
 
 
-class ShowStudent(BaseModel):
+class ShowStudent(StudentBase):
     firstname: str
     lastname: str
     is_active: bool
-    teacher: int
+    teacher_id: int
+    id: int
+
+    class Config():
+        orm_mode = True
+
+class ShowUser(UserBase):
+    username: Optional[str]
+    email : Optional[EmailStr]
+    id:int
 
     class Config():
         orm_mode = True

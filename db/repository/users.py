@@ -15,3 +15,8 @@ def create_new_user(user:UserCreate, db:Session):
     db.commit()
     db.refresh(new_user)
     return new_user
+
+
+def retrieve_user(id:int, db:Session):
+    user = db.query(User).filter(id==id).first()
+    return user

@@ -26,3 +26,6 @@ pydantic[email]
 passlib[bcrypt]
 pytest
 requests
+python-jose[cryptography]
+python-multipart
+pre-commit
